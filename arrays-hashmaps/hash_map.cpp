@@ -16,30 +16,26 @@ public:
     Node **buckets;
     int cap;
     int sz = 0;
-    int lg = 0;
     double maxLoad = 0.75;
-    const double PHI = 1.61803398875;
-    const unsigned long long C = pow(2, 64) / PHI;
-    HashMap(int initCap = 8)
+    int shift = 0;
+    const unsigned long long C = 11400714819323198485ull;
+    HashMap(int initCap = 8) // handle rule of 3
     {
         if (initCap < 8)
             initCap = 8;
 
         // Set to power of 2
-        double lg = log2(initCap);
-        if (lg != floor(lg))
-        {
-            lg = ceil(lg);
-            initCap = pow(2, lg);
-        }
+        if ((initCap & (initCap - 1)) != 0)
+            initCap = 8;
+
         cap = initCap;
+        shift = log2(cap);
         // Init array
         buckets = new Node *[cap];
         for (int i = 0; i < cap; i++)
         {
             buckets[i] = nullptr;
         }
-        this->lg = lg;
     }
     ~HashMap()
     {
@@ -59,13 +55,13 @@ public:
         }
         delete[] buckets;
     }
-    const unsigned long long hash(int key)
+    unsigned long long hash(int key) const
     {
         return C * key;
     }
-    const int indexFor(int key)
+    int indexFor(int key) const
     {
-        return hash(key) >> (64 - lg);
+        return hash(key) >> (64 - shift);
     }
 };
 
