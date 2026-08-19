@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OA Prep — Session Reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#13161D;
+    --panel:#1A1E27;
+    --panel-2:#20242F;
+    --rule:#2C313D;
+    --text:#CDC6B6;
+    --dim:#7E8496;
+    --amber:#E8A33D;
+    --rust:#C0553F;
+    --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --body:"Archivo",system-ui,-apple-system,sans-serif;
+    --display:"Bricolage Grotesque","Archivo",system-ui,sans-serif;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--text);
+    font-family:var(--body);
+    font-size:15px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px 96px}
+
+  a{color:var(--amber);text-decoration:none}
+  a:hover{text-decoration:underline}
+  :focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+
+  /* ---------- masthead ---------- */
+  .mast{padding:56px 0 28px}
+  .kicker{
+    font-family:var(--mono);font-size:11px;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--dim);margin-bottom:14px;
+  }
+  h1{
+    font-family:var(--display);font-weight:800;
+    font-size:clamp(34px,6vw,58px);line-height:.98;letter-spacing:-.02em;
+    margin:0 0 14px;color:#EDE7D8;
+  }
+  .sub{color:var(--dim);max-width:52ch;font-size:14px;margin:0}
+  .sub b{color:var(--text);font-weight:600}
+
+  /* ---------- signature: the chain ---------- */
+  .chain{
+    margin:36px 0 0;padding:22px 20px;
+    background:var(--panel);border:1px solid var(--rule);border-radius:3px;
+  }
+  .chain-label{
+    font-family:var(--mono);font-size:10px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--dim);margin-bottom:18px;
+  }
+  .track{display:flex;align-items:stretch;flex-wrap:wrap;gap:0}
+  .node{flex:1 1 150px;min-width:140px;padding-right:18px;position:relative}
+  .node + .node{padding-left:18px;border-left:1px solid var(--rule)}
+  .node-n{
+    font-family:var(--mono);font-size:11px;font-weight:700;
+    color:var(--amber);letter-spacing:.1em;
+  }
+  .node-t{font-family:var(--display);font-weight:600;font-size:17px;color:#EDE7D8;margin-top:2px}
+  .node-d{font-size:12.5px;color:var(--dim);margin-top:4px;line-height:1.4}
+  .chain-foot{
+    margin-top:16px;padding-top:14px;border-top:1px solid var(--rule);
+    font-size:13px;color:var(--dim);
+  }
+  .chain-foot b{color:var(--text);font-weight:600}
+
+  /* ---------- nav ---------- */
+  nav{
+    position:sticky;top:0;z-index:20;
+    background:rgba(19,22,29,.94);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--rule);margin-top:40px;
+  }
+  .nav-in{
+    max-width:1080px;margin:0 auto;padding:11px 24px;
+    display:flex;gap:22px;flex-wrap:wrap;
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;
+  }
+  .nav-in a{color:var(--dim)}
+  .nav-in a:hover{color:var(--amber);text-decoration:none}
+
+  /* ---------- sections ---------- */
+  section{padding-top:56px}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:6px}
+  .sec-n{font-family:var(--mono);font-size:12px;color:var(--amber);font-weight:700}
+  h2{
+    font-family:var(--display);font-weight:600;font-size:26px;
+    letter-spacing:-.01em;margin:0;color:#EDE7D8;
+  }
+  .sec-note{color:var(--dim);font-size:13.5px;margin:0 0 22px;max-width:62ch}
+
+  h3{
+    font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--dim);margin:26px 0 10px;font-weight:500;
+  }
+
+  /* ---------- prompt panels ---------- */
+  .prompt{
+    background:var(--panel);border:1px solid var(--rule);border-left:2px solid var(--amber);
+    border-radius:3px;padding:22px 22px 24px;margin-bottom:20px;
+  }
+  .p-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px}
+  .p-n{font-family:var(--mono);font-size:22px;font-weight:700;color:var(--amber);line-height:1}
+  .p-t{font-family:var(--display);font-weight:600;font-size:21px;color:#EDE7D8}
+  .p-file{font-family:var(--mono);font-size:11.5px;color:var(--dim)}
+  .p-d{font-size:13.5px;color:var(--dim);margin:0 0 16px;max-width:66ch}
+
+  .invoke{
+    font-family:var(--mono);font-size:13px;color:var(--text);
+    background:var(--ink);border:1px solid var(--rule);border-radius:2px;
+    padding:9px 12px;margin-bottom:16px;overflow-x:auto;white-space:pre;
+  }
+  .invoke .c{color:var(--amber)}
+
+  /* ---------- tables ---------- */
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th{
+    text-align:left;font-family:var(--mono);font-size:10px;font-weight:500;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--dim);
+    padding:0 12px 8px 0;border-bottom:1px solid var(--rule);
+  }
+  td{padding:8px 12px 8px 0;border-bottom:1px solid rgba(44,49,61,.55);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  td.cmd{white-space:nowrap;width:1%}
+  code{
+    font-family:var(--mono);font-size:12.5px;color:var(--amber);
+    background:rgba(232,163,61,.08);padding:1.5px 6px;border-radius:2px;
+    white-space:nowrap;
+  }
+  code.plain{color:var(--text);background:rgba(205,198,182,.07)}
+  .num{font-family:var(--mono);font-size:12.5px;color:var(--text)}
+
+  /* ---------- phase strip ---------- */
+  .phases{
+    display:flex;flex-wrap:wrap;gap:7px;margin-top:16px;
+    font-family:var(--mono);font-size:11px;
+  }
+  .ph{
+    background:var(--panel-2);border:1px solid var(--rule);border-radius:2px;
+    padding:4px 9px;color:var(--dim);
+  }
+  .ph b{color:var(--amber);font-weight:700}
+
+  /* ---------- grid ---------- */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+  .card{
+    background:var(--panel);border:1px solid var(--rule);border-radius:3px;padding:18px 18px 20px;
+  }
+  .card h3{margin-top:0}
+
+  /* ---------- rules list ---------- */
+  ol.rules{counter-reset:r;list-style:none;margin:0;padding:0}
+  ol.rules li{
+    counter-increment:r;position:relative;padding:9px 0 9px 40px;
+    border-bottom:1px solid rgba(44,49,61,.55);font-size:13.5px;
+  }
+  ol.rules li:last-child{border-bottom:none}
+  ol.rules li::before{
+    content:counter(r,decimal-leading-zero);position:absolute;left:0;top:9px;
+    font-family:var(--mono);font-size:11px;color:var(--amber);font-weight:700;
+  }
+
+  .flag{color:var(--rust);font-weight:600}
+  .ok{color:var(--amber)}
+  em{color:var(--text);font-style:italic}
+  strong{color:#EDE7D8;font-weight:600}
+
+  .callout{
+    border-left:2px solid var(--rust);padding:12px 0 12px 16px;margin:20px 0;
+    font-size:13.5px;color:var(--text);
+  }
+  .callout b{color:var(--rust)}
+
+  footer{
+    margin-top:72px;padding-top:22px;border-top:1px solid var(--rule);
+    font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--dim);
+    display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  }
+
+  @media (max-width:620px){
+    .wrap{padding:0 16px 72px}
+    .node + .node{border-left:none;padding-left:0;padding-top:14px;margin-top:14px;border-top:1px solid var(--rule)}
+    .nav-in{gap:14px;padding:10px 16px}
+    td.cmd{white-space:normal}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="mast">
+    <div class="kicker">OA Prep · Raghu Raman B · 6 Aug – 28 Nov 2026</div>
+    <h1>Session<br>Reference</h1>
+    <p class="sub">Four prompts, one order. Every session reads <b>progress.md</b> from the project files and ends with a <b>close</b> block you paste back in by hand. Nothing writes to it automatically — skip the paste and the next session reads a stale file.</p>
+
+    <div class="chain">
+      <div class="chain-label">The chain</div>
+      <div class="track">
+        <div class="node">
+          <div class="node-n">04</div>
+          <div class="node-t">Build</div>
+          <div class="node-d">What the structure <em>is</em>. Data-structure topics only.</div>
+        </div>
+        <div class="node">
+          <div class="node-n">01</div>
+          <div class="node-t">Theory</div>
+          <div class="node-d">What it's <em>for</em>. Triggers, STL kit, pattern list.</div>
+        </div>
+        <div class="node">
+          <div class="node-n">02</div>
+          <div class="node-t">Practice</div>
+          <div class="node-d">One ladder per pattern. Repeat across the list.</div>
+        </div>
+        <div class="node">
+          <div class="node-n">03</div>
+          <div class="node-t">Mock</div>
+          <div class="node-d">Triage under a shared clock. Weekly.</div>
+        </div>
+      </div>
+      <div class="chain-foot">
+        Build before theory, deliberately — <b>nobody knows why heapify is O(n) until they've written sift-down.</b> Pattern topics skip 04 and start at 01.
+      </div>
+    </div>
+  </header>
+
+  <nav>
+    <div class="nav-in">
+      <a href="#prompts">Prompts</a>
+      <a href="#scales">Scales</a>
+      <a href="#rules">Standing rules</a>
+      <a href="#retype">Cold retype</a>
+      <a href="#calendar">Calendar</a>
+      <a href="#day">Day shapes</a>
+    </div>
+  </nav>
+
+  <!-- ================= PROMPTS ================= -->
+  <section id="prompts">
+    <div class="sec-head"><span class="sec-n">§1</span><h2>The four prompts</h2></div>
+    <p class="sec-note">Paste the prompt file, then the invocation line. All code is C++, no exceptions.</p>
+
+    <!-- 04 -->
+    <div class="prompt">
+      <div class="p-head">
+        <span class="p-n">04</span><span class="p-t">Data structure — build</span>
+        <span class="p-file">04-ds-prompt.md</span>
+      </div>
+      <p class="p-d">Internals, invariants, operations, how it breaks. Stepwise: roadmap first, then one operation at a time. No STL containers — raw arrays and pointers. You write every line; it never shows code.</p>
+      <div class="invoke"><span class="c">ds:</span> &lt;structure&gt; | <span class="c">depth:</span> &lt;core|full&gt;</div>
+      <table>
+        <thead><tr><th>Command</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td class="cmd"><code>go</code></td><td>Roadmap accepted — serve step 1</td></tr>
+          <tr><td class="cmd"><code>built</code></td><td>Submitting code for the <em>current step</em></td></tr>
+          <tr><td class="cmd"><code>step</code></td><td>Advance to the next step</td></tr>
+          <tr><td class="cmd"><code>cut &lt;n&gt;</code></td><td>Drop step n from the roadmap</td></tr>
+          <tr><td class="cmd"><code>eval</code></td><td>Done building — full evaluation on the assembled structure</td></tr>
+          <tr><td class="cmd"><code>test</code></td><td>Structure test, 6–8 questions, one at a time</td></tr>
+          <tr><td class="cmd"><code>trace</code></td><td>Hand-trace exercise — paper only</td></tr>
+          <tr><td class="cmd"><code>cards</code></td><td>Anki block, max 4</td></tr>
+          <tr><td class="cmd"><code>close</code></td><td>progress.md block, then end</td></tr>
+        </tbody>
+      </table>
+      <div class="phases">
+        <span class="ph"><b>D1</b> orientation</span>
+        <span class="ph"><b>D2</b> roadmap</span>
+        <span class="ph"><b>D3</b> build loop</span>
+        <span class="ph"><b>D4</b> eval</span>
+        <span class="ph"><b>D5</b> structure test</span>
+        <span class="ph"><b>D6</b> hand trace</span>
+        <span class="ph"><b>D7</b> anki</span>
+        <span class="ph"><b>D8</b> close</span>
+      </div>
+      <div class="callout"><b>Because the build is scaffolded, the +2 day cold retype is the first honest correctness test.</b> Bands from a stepwise build run high — single-operation defects get caught as you write. Weight the retype accordingly.</div>
+      <h3>Bands</h3>
+      <table>
+        <tbody>
+          <tr><td class="cmd"><code class="plain">REDO</code></td><td>Core operation missing, or wrong on ordinary input</td></tr>
+          <tr><td class="cmd"><code class="plain">FRAGILE</code></td><td>Happy path works; adversarial sequences break it</td></tr>
+          <tr><td class="cmd"><code class="plain">PASS</code></td><td>Correct, bounds met, survives the sequences</td></tr>
+          <tr><td class="cmd"><code class="plain">SOLID</code></td><td>PASS + withheld gotchas handled deliberately</td></tr>
+          <tr><td class="cmd"><code class="plain">EXCELLENT</code></td><td>SOLID + every choice defensible under one probing question</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 01 -->
+    <div class="prompt">
+      <div class="p-head">
+        <span class="p-n">01</span><span class="p-t">Theory</span>
+        <span class="p-file">01-theory-prompt.md</span>
+      </div>
+      <p class="p-d">Orientation and recognition. The invariant stated operationally, the three canonical wrong first attempts, the topic's STL kit, then the pattern list that feeds 02. You read for ~1h between T2 and T3.</p>
+      <div class="invoke"><span class="c">theory:</span> &lt;topic&gt; | <span class="c">tier:</span> &lt;S|A|B&gt;</div>
+      <table>
+        <thead><tr><th>Command</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td class="cmd"><code>ready</code></td><td>Reading done — run the smoke test</td></tr>
+          <tr><td class="cmd"><code>patterns</code></td><td>Skip ahead to the pattern list</td></tr>
+          <tr><td class="cmd"><code>cards</code></td><td>Anki block, max 6 for the topic</td></tr>
+          <tr><td class="cmd"><code>close</code></td><td>progress.md block, then end</td></tr>
+        </tbody>
+      </table>
+      <div class="phases">
+        <span class="ph"><b>T1</b> orientation card</span>
+        <span class="ph"><b>T2</b> STL kit</span>
+        <span class="ph"><b>T3</b> smoke test 2Q</span>
+        <span class="ph"><b>T4</b> pattern list</span>
+        <span class="ph"><b>T5</b> anki</span>
+        <span class="ph"><b>T6</b> close</span>
+      </div>
+      <h3>Opening move — the rehearsal</h3>
+      <p class="p-d" style="margin-bottom:0">read statement → find the giveaway → read constraints → <strong>fix the complexity budget</strong> → <em>then</em> choose the pattern. Most people choose the pattern first and back-fill the budget, which is how they write O(n²) for n ≤ 10⁵.</p>
+    </div>
+
+    <!-- 02 -->
+    <div class="prompt">
+      <div class="p-head">
+        <span class="p-n">02</span><span class="p-t">Practice — the ladder</span>
+        <span class="p-file">02-practice-prompt.md</span>
+      </div>
+      <p class="p-d">One pattern per session, run once for every pattern 01 queued. Problems listed up front, served one at a time. You time yourself and report — it cannot.</p>
+      <div class="invoke"><span class="c">practice:</span> &lt;topic&gt; → &lt;pattern&gt; | <span class="c">tier:</span> &lt;S|A|B&gt;</div>
+      <table>
+        <thead><tr><th>Command</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td class="cmd"><code>go</code></td><td>Confirm the ladder, serve problem 1</td></tr>
+          <tr><td class="cmd"><code>hint</code></td><td>One rung. Refused before the halfway mark of the box</td></tr>
+          <tr><td class="cmd"><code>burn</code></td><td>Timed out or bailed. Logged, no lecture</td></tr>
+          <tr><td class="cmd"><code>next</code></td><td>Serve the next problem</td></tr>
+          <tr><td class="cmd"><code>skip</code></td><td>Drop this one, serve the next</td></tr>
+          <tr><td class="cmd"><code>status</code></td><td>Done, grade average, elapsed vs budget</td></tr>
+          <tr><td class="cmd"><code>cards</code></td><td>Anki block, max 4 per pattern</td></tr>
+          <tr><td class="cmd"><code>close</code></td><td>progress.md block, then end</td></tr>
+        </tbody>
+      </table>
+      <h3>Submit format</h3>
+      <div class="invoke">LC &lt;num&gt; | &lt;elapsed&gt; min | hints: &lt;0|1|2&gt;
+&lt;code&gt;</div>
+      <div class="phases">
+        <span class="ph"><b>P1</b> working brief</span>
+        <span class="ph"><b>P2</b> ladder</span>
+        <span class="ph"><b>P3</b> serve one at a time</span>
+        <span class="ph"><b>P4</b> depth probe 3Q</span>
+        <span class="ph"><b>P5</b> anki</span>
+        <span class="ph"><b>P6</b> close</span>
+      </div>
+      <div class="callout"><b>Auto-burn:</b> elapsed &gt; timebox ⇒ burn, regardless of verdict. An accepted solution that took 40 minutes is a test failure.</div>
+      <div class="grid" style="margin-top:20px">
+        <div class="card">
+          <h3>Rubric — OA-weighted</h3>
+          <table>
+            <tbody>
+              <tr><td>Correctness</td><td class="num">45</td></tr>
+              <tr><td>Optimality</td><td class="num">25</td></tr>
+              <tr><td>Edge cases</td><td class="num">15</td></tr>
+              <tr><td>Independence</td><td class="num">15</td></tr>
+              <tr><td style="color:var(--dim)">Clarity</td><td class="num" style="color:var(--dim)">not graded</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h3>Grades &amp; gates</h3>
+          <table>
+            <tbody>
+              <tr><td>A ≥90 · B 75–89 · C 60–74</td><td class="num">D 45–59 · F &lt;45</td></tr>
+              <tr><td>Wrong answer</td><td class="num">caps at C</td></tr>
+              <tr><td>Code-level hint</td><td class="num">caps at B</td></tr>
+              <tr><td>Declared brute force</td><td class="num">beats a fake optimal</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <h3>Escalation ladder</h3>
+      <p class="p-d" style="margin-bottom:0">(a) leading question → (b) nudge at the invariant → (c) the idea in plain words → (d) code, only on explicit surrender. On timeout with no hint used: editorial idea in three lines, log trigger→pattern, move on. <em>Grinding is the wrong muscle.</em></p>
+    </div>
+
+    <!-- 03 -->
+    <div class="prompt">
+      <div class="p-head">
+        <span class="p-n">03</span><span class="p-t">Mock test</span>
+        <span class="p-file">03-mock-prompt.md</span>
+      </div>
+      <p class="p-d">A test, not a lesson. Proctor only — silence until you call time. Trains the one thing per-problem practice can't: which problem to open first, when to abandon, whether to bank partial credit before optimising.</p>
+      <div class="invoke"><span class="c">mock:</span> &lt;format&gt;</div>
+      <table>
+        <thead><tr><th>Command</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td class="cmd"><code>time</code></td><td>Calling time — here is my report</td></tr>
+          <tr><td class="cmd"><code>close</code></td><td>progress.md block</td></tr>
+        </tbody>
+      </table>
+      <h3>Formats</h3>
+      <table>
+        <thead><tr><th>Format</th><th>Paper</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td class="cmd"><code>standard</code></td><td class="num">3 · 90 min</td><td>Default. The common product-company shape.</td></tr>
+          <tr><td class="cmd"><code>two-up</code></td><td class="num">2 · 70 min</td><td>Both medium+. Partial test cases scored.</td></tr>
+          <tr><td class="cmd"><code>dense</code></td><td class="num">4 · 100 min</td><td>One easy, two medium, one hard.</td></tr>
+          <tr><td class="cmd"><code>longform</code></td><td class="num">1 · 180 min</td><td><span class="flag">No partial credit.</span> Simulation / BFS / backtracking.</td></tr>
+          <tr><td class="cmd"><code>sprint</code></td><td class="num">3 · 60 min</td><td>Tighter clock, lighter problems. Pure speed.</td></tr>
+        </tbody>
+      </table>
+      <h3>Graded triage first, code second</h3>
+      <p class="p-d" style="margin-bottom:0">Ordering · over-investment (&gt;35% on one problem) · left on the table · reading cost. <strong>A fully solved paper with bad allocation still grades poorly</strong> — the allocation is what generalises. Then recognition, then a brief code review, then <em>one</em> prescription.</p>
+    </div>
+  </section>
+
+  <!-- ================= SCALES ================= -->
+  <section id="scales">
+    <div class="sec-head"><span class="sec-n">§2</span><h2>Scales</h2></div>
+    <p class="sec-note">Tier is a frequency judgment about problems. Depth is how much of a structure's surface you need in hand. They are independent.</p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Tiers</h3>
+        <table>
+          <thead><tr><th>Tier</th><th>Problems</th><th>Ladder</th></tr></thead>
+          <tbody>
+            <tr><td><strong>S</strong> every pattern</td><td class="num">28–35</td><td class="num">8–10</td></tr>
+            <tr><td><strong>A</strong> top ~70%</td><td class="num">12–16</td><td class="num">5–6</td></tr>
+            <tr><td><strong>B</strong> 2–3 core</td><td class="num">5–8</td><td class="num">3–4</td></tr>
+            <tr><td><strong>C</strong> awareness</td><td class="num">0–2</td><td class="num">none</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h3>Timeboxes</h3>
+        <table>
+          <tbody>
+            <tr><td>Easy</td><td class="num">12 min</td></tr>
+            <tr><td>Medium</td><td class="num">20 min</td></tr>
+            <tr><td>Hard</td><td class="num">30 min</td></tr>
+            <tr><td>Burn queue</td><td class="num">+2d, then +7d</td></tr>
+            <tr><td>Failed +2 redo</td><td class="num">back in at +2</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h3>Constraint → budget</h3>
+        <table>
+          <tbody>
+            <tr><td class="num">n ≤ 10⁵</td><td>O(n log n)</td></tr>
+            <tr><td class="num">n ≤ 10³</td><td>O(n²) fine</td></tr>
+            <tr><td class="num">n ≤ 20</td><td>exponential intended</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h3>Anki caps</h3>
+        <table>
+          <tbody>
+            <tr><td>Theory deck</td><td class="num">~130</td></tr>
+            <tr><td>Practice deck</td><td class="num">~120</td></tr>
+            <tr><td>Per topic (01)</td><td class="num">6</td></tr>
+            <tr><td>Per pattern (02)</td><td class="num">4</td></tr>
+            <tr><td>Per structure (04)</td><td class="num">4</td></tr>
+            <tr><td>Per mock (03)</td><td class="num">3</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="callout"><b>Declared cut line.</b> If behind by 15 Sept, drop four B topics entirely — Math &amp; Number Theory, Matrix &amp; Simulation, BIT &amp; Segment Tree, Shortest Paths beyond plain Dijkstra. Recovers ~24 problems and ~3 days. <b>Do not cut into A-tier to protect B-tier.</b></div>
+  </section>
+
+  <!-- ================= RULES ================= -->
+  <section id="rules">
+    <div class="sec-head"><span class="sec-n">§3</span><h2>Standing rules</h2></div>
+    <p class="sec-note">These don't bend for a good session or a bad one.</p>
+    <ol class="rules">
+      <li>Every problem timed. Exceeded the box ⇒ auto-burn, regardless of verdict.</li>
+      <li>Timer expires ⇒ read the editorial, log trigger→pattern, move on. Do not grind.</li>
+      <li>Mistake log entry for every failure: <strong>trigger → pattern</strong>, one line.</li>
+      <li><code class="plain">progress.md</code> updated by hand from the <code>close</code> block at the end of every session. A stale file is worse than none — it looks current.</li>
+      <li>Anki reviewed daily. Hard cap ~250 cards across both decks.</li>
+      <li>Weekly rated contest — better pressure simulation, and the rating is the one verifiable number for the CV.</li>
+      <li>Optimal not visible in ~5 minutes ⇒ write and submit the brute force first. <strong>Partial credit is real credit.</strong></li>
+      <li>Constraints → complexity budget, read before writing anything.</li>
+      <li><span class="flag">Never trust a recalled question list</span> — yours or a model's. Verify numbers against titles; verify company sets against LeetCode Discuss.</li>
+    </ol>
+  </section>
+
+  <!-- ================= RETYPE ================= -->
+  <section id="retype">
+    <div class="sec-head"><span class="sec-n">§4</span><h2>Cold retype targets</h2></div>
+    <p class="sec-note">Two separate gates. <strong>Band</strong> grades the first write, scaffolded and untimed. <strong>Cold retype</strong> grades speed from memory — no STL, no reference, stopwatch running. Knowing a BIT isn't the skill; reproducing it in 4 minutes cold is.</p>
+    <div class="grid">
+      <div class="card">
+        <table>
+          <thead><tr><th>Structure</th><th>Target</th></tr></thead>
+          <tbody>
+            <tr><td>Array-backed stack</td><td class="num">3 min</td></tr>
+            <tr><td>DSU</td><td class="num">3 min</td></tr>
+            <tr><td>Counting sort</td><td class="num">4 min</td></tr>
+            <tr><td>Fenwick tree (BIT)</td><td class="num">4 min</td></tr>
+            <tr><td>Mergesort</td><td class="num">5 min</td></tr>
+            <tr><td>Singly linked list</td><td class="num">5 min</td></tr>
+            <tr><td>Quicksort</td><td class="num">6 min</td></tr>
+            <tr><td>Circular queue</td><td class="num">6 min</td></tr>
+            <tr><td>Trie</td><td class="num">6 min</td></tr>
+            <tr><td>Iterative traversals</td><td class="num">6 min</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <table>
+          <thead><tr><th>Structure</th><th>Target</th></tr></thead>
+          <tbody>
+            <tr><td>Dijkstra</td><td class="num">6 min</td></tr>
+            <tr><td>Doubly linked list</td><td class="num">7 min</td></tr>
+            <tr><td>Deque</td><td class="num">8 min</td></tr>
+            <tr><td>Binary min-heap</td><td class="num">8 min</td></tr>
+            <tr><td>Hash map (chaining)</td><td class="num">10 min</td></tr>
+            <tr><td>Hash map (open addressing)</td><td class="num">10 min</td></tr>
+            <tr><td>Segment tree</td><td class="num">10 min</td></tr>
+            <tr><td>BST (two-child delete)</td><td class="num">12 min</td></tr>
+            <tr><td>LRU cache</td><td class="num">12 min</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <p class="sec-note" style="margin-top:20px"><code class="plain">bare.h</code> — after the heap build (~25 Aug), one no-STL header: <code class="plain">MyStack</code>, <code class="plain">MyQueue</code>, <code class="plain">MyHeap</code>, <code class="plain">MyHashMap</code>, plus BIT and segment tree. Own names, never shadowing STL identifiers. One afternoon solving 4–5 problems with only that header. <strong>Everywhere else: use STL.</strong> Faster to type, fewer bug surfaces, a real scoring advantage on the ~90% of tests that permit it.</p>
+  </section>
+
+  <!-- ================= CALENDAR ================= -->
+  <section id="calendar">
+    <div class="sec-head"><span class="sec-n">§5</span><h2>Admin gates</h2></div>
+    <p class="sec-note">Miss one and the prep doesn't matter.</p>
+    <table>
+      <thead><tr><th>Date</th><th>Item</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td class="num">8–12 Aug</td><td><strong>Placement fee ₹2500</strong> · CCC Portal</td><td><span class="flag">Hard gate.</span> Miss it and you are out of the process.</td></tr>
+        <tr><td class="num">15–20 Aug</td><td>CCD portal: login, data entry, photo</td><td>Falls during CHI. Alarm it.</td></tr>
+        <tr><td class="num">25–31 Aug</td><td>Placement ID card issue</td><td>—</td></tr>
+        <tr><td class="num">26–31 Aug</td><td><strong>CV upload</strong> — 3 CVs + drive link</td><td>Everything on the CV provable by this date.</td></tr>
+        <tr><td class="num">3–10 Sept</td><td>CV verification by CCD</td><td>Be responsive; flags come back here.</td></tr>
+        <tr><td class="num">6–10 Sept</td><td>Official Mock OA Series #1</td><td>Free, realistic, proctored. Attend all.</td></tr>
+        <tr><td class="num">15 Sept</td><td><strong>CV flagging, rectification, LOCK</strong></td><td><span class="flag">Absolute final.</span> Nothing changes after.</td></tr>
+        <tr><td class="num">17 Sept →</td><td>Companies register on portal</td><td>Max 50 profiles/student — do not spray.</td></tr>
+        <tr><td class="num">21–24 Sept</td><td>Official Mock OA Series #2</td><td>Dress rehearsal. Attend all.</td></tr>
+        <tr><td class="num">25 Sept – 28 Nov</td><td><strong>Online Assessments</strong></td><td>Windows 7 PM–12:30 AM and 8 AM–12:30 AM.</td></tr>
+      </tbody>
+    </table>
+    <div class="callout"><b>The night window is not a footnote.</b> A meaningful share of tests run 7 PM–12:30 AM. Solving at 11 PM is a different skill from solving at 11 AM. From September, three timed sessions a week in the 8 PM–midnight slot.</div>
+  </section>
+
+  <!-- ================= DAY ================= -->
+  <section id="day">
+    <div class="sec-head"><span class="sec-n">§6</span><h2>Day shapes</h2></div>
+    <p class="sec-note">DSA is drill work — it tolerates fragmentation. MTP is deep work — it does not. Give the thesis contiguous blocks, never daily one-hour scraps.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Phase A · 6–19 Aug · CHI leads</h3>
+        <table>
+          <tbody>
+            <tr><td class="num">08:30</td><td>Anki</td></tr>
+            <tr><td class="num">09:00</td><td>CHI — collection / analysis</td></tr>
+            <tr><td class="num">14:00</td><td><strong>DSA — 3h.</strong> One full session</td></tr>
+            <tr><td class="num">18:00</td><td>CHI — draft writing</td></tr>
+            <tr><td class="num">21:00</td><td>close block → progress.md</td></tr>
+            <tr><td class="num">23:30</td><td>Sleep — 8.5h</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h3>Phase B · 20 Aug – 24 Sept · full prep</h3>
+        <table>
+          <tbody>
+            <tr><td class="num">08:30</td><td>Anki — first thing, best retention</td></tr>
+            <tr><td class="num">09:00</td><td><strong>DSA 1</strong> — theory / build</td></tr>
+            <tr><td class="num">13:00</td><td><strong>DSA 2</strong> — ladder</td></tr>
+            <tr><td class="num">16:30</td><td>Exercise — <span class="flag">not optional</span></td></tr>
+            <tr><td class="num">17:30</td><td>MTP (M/W/F) or DSA overflow</td></tr>
+            <tr><td class="num">20:00</td><td><strong>Evening timed session</strong> — 3×/wk</td></tr>
+            <tr><td class="num">00:30</td><td>Sleep — 7.5h</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h3>Phase C · 25 Sept – 28 Nov · night-shifted</h3>
+        <table>
+          <tbody>
+            <tr><td class="num">10:00</td><td>Wake — <strong>bright light immediately</strong></td></tr>
+            <tr><td class="num">11:00</td><td>MTP — best thesis window of the year</td></tr>
+            <tr><td class="num">14:30</td><td>DSA — past papers, burn queue</td></tr>
+            <tr><td class="num">17:30</td><td>Light dinner, protein-forward</td></tr>
+            <tr><td class="num">18:15</td><td><strong>Warm-up: one easy, timed</strong></td></tr>
+            <tr><td class="num">19:00</td><td><strong>TEST WINDOW</strong></td></tr>
+            <tr><td class="num">02:00</td><td>Sleep — 8h</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <p class="sec-note" style="margin-top:22px"><strong>Night-window tactics.</strong> Bright light 18:00–20:00 holds the delayed phase. One caffeine dose at 17:30–18:00, nothing after 20:00 — the half-life is ~5–6h and it degrades sleep depth even when you fall asleep fine. Same wake time every day including off days; a three-hour weekend swing re-breaks the adaptation every Monday. <strong>One full off day per week — not a light day.</strong> Eat with people at least once a day; a night-shifted schedule isolates you fast.</p>
+  </section>
+
+  <footer>
+    <span>M.Tech CSE · IIT Guwahati</span>
+    <span>C++ · every problem, every implementation</span>
+  </footer>
+
+</div>
+</body>
+</html>
